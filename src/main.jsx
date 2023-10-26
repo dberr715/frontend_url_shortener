@@ -4,22 +4,31 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import ErrorPage from "./routes/errorPage";
 import Home, { loader as homeLoader } from "./routes/homePage";
-
+import LoginPage from "./routes/loginPage";
+import LogoutPage, { loader as logoutLoader } from "./routes/logoutPage";
 import "./index.css";
-import LinkList from "./components/LinkList";
+import HomeText from "./components/HomeText";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
+    element: <Root />, 
+    errorElement: <ErrorPage />, 
     children: [
       {
-        index: true,
-        element: <Home />,
+        index: true, 
+        element: <HomeText />, 
         loader: homeLoader,
       },
-     
+      {
+        path: "login/",
+        element: <LoginPage />,
+      },
+      {
+        path: "logout/",
+        element: <LogoutPage />,
+        loader: logoutLoader,
+      },
     ],
   },
 ]);

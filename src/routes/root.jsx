@@ -1,21 +1,16 @@
-import { Outlet, Link } from "react-router-dom";
-import LoginForm from "../components/LoginForm";
-import "../App.css";
+import { Outlet } from "react-router-dom";
+import { AuthProvider } from "../AuthContext";
+import MainNav from "../components/Navigations";
+import "../index.css";
 
-import { Navigation } from "../components/Navigations";
-import UrlForm from "../components/UrlForm";
-import LinkList from "../components/LinkList";
-import HomeText from "../components/HomeText";
-function App() {
-    
+export default function Root() {
   return (
-    <>
-      <Outlet />
-      <LoginForm />
-      <HomeText />
-      <LinkList linkList={} />
-    </>
+    <AuthProvider>
+      <MainNav />
+
+      <main>
+        <Outlet />
+      </main>
+    </AuthProvider>
   );
 }
-
-export default App;

@@ -1,36 +1,64 @@
 import { useState } from "react";
 import LoginForm from "../components/LoginForm";
-import "../App.css";
-import { BrowserRouter, Routes, Route, useLoaderData } from "react-router-dom";
-import { Navigation } from "../components/Navigations";
+import "../index.css";
+import { redirect, useLoaderData } from "react-router-dom";
+import  MainNav  from "../components/Navigations";
 import LinkList from "../components/LinkList";
 import UrlForm from "../components/UrlForm";
 
 
 export async function loader() {
-  const url = "http://127.0.0.1:8000/urldata/";
-  const linkList = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  }).then((response) => response.json());
-  return linkList;
+  try {
+    const url = "http://localhost:8000/urldata/";
+    const linkList = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      },
+    }).then((response) => response.json());
+    if (!Array.isArray(linkList)) {
+      throw Error("Not an array of links");
+    }
+    return { linkList };
+  } catch (error) {
+    return redirect("/login");
+  }
 }
 
-function App() {
-    const {List}= useLoaderData()
-    console.log(List)
+export default function Home() {
+  const { linkList } = useLoaderData();
 
   return (
     <>
-      {/* <LoginForm />
-      <UrlForm /> */}
-      {/* <LinkList /> */}
-      <LinkList List={List} />
+      <UrlForm />
+
+      <LinkList linkList={linkList} />
     </>
   );
 }
+// export async function loader() {
+//   const url = "http://127.0.0.1:8000/urldata/";
+//   const linkList = await fetch(url, {
+//     headers: {
+//       Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+//       Accept: "application/json",
+//       "Content-Type": "application/json",
+//     },
+//   }).then((response) => response.json());
+//   return linkList;
+// }
 
-export default App;
+// function App() {
+//     const {List}= useLoaderData()
+//     console.log(List)
+
+//   return (
+//     <>
+//       {/* <LoginForm />
+//       <UrlForm /> */}
+//       {/* <LinkList /> */}
+//       <LinkList List={List} />
+//     </>
+//   );
+// }
+
+// export default App;

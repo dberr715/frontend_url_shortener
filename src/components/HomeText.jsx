@@ -1,5 +1,6 @@
 import { useState } from "react";
 import UrlForm from "./UrlForm";
+import "../index.css";
 export default function HomeText() {
   return (
     <div className="rounded-lg h-14 bg-gradient-to-r from-cyan-500 to-blue-500 radius relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
@@ -40,7 +41,7 @@ export default function HomeText() {
                       fill="none"
                     />
                   </svg>
-                  <p className="ml-4">Enter in a url and a nickname</p>
+                  <p className="ml-4">Enter in a url nickname</p>
                 </li>
                 <li className="flex items-center">
                   <svg
@@ -53,9 +54,9 @@ export default function HomeText() {
                       fill="none"
                     />
                   </svg>
-                  <p className="ml-4">Copy your Long url</p>
+                  <p className="ml-4">Copy your Long url in the box</p>
                 </li>
-                <li className="flex items-center">
+                {/* <li className="flex items-center">
                   <svg
                     className="h-6 w-6 flex-none fill-sky-100 stroke-sky-500 stroke-2"
                     strokeLinejoin="round"
@@ -69,7 +70,7 @@ export default function HomeText() {
                   <p className="ml-4">
                     Write the nickname in the short input box
                   </p>
-                </li>
+                </li> */}
                 <li className="flex items-center">
                   <svg
                     className="h-6 w-6 flex-none fill-sky-100 stroke-sky-500 stroke-2"
