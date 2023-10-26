@@ -1,4 +1,3 @@
-import { useState } from "react";
 import UrlForm from "./UrlForm";
 import "../index.css";
 export default function HomeText() {

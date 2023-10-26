@@ -11,10 +11,12 @@ export default function UrlForm() {
   const auth = localStorage.getItem("access_token");
   const userId = localStorage.getItem("user_id");
 
+  console.log(userId);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(updateForm.current);
-
+    console.log(formData);
     const apiUrl = "http://localhost:8000/urldata/";
     await fetch(apiUrl, {
       method: "POST",
@@ -28,7 +30,7 @@ export default function UrlForm() {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form ref={updateForm} onSubmit={handleSubmit}>
       <div className="pt-8 text-base font-semibold leading-7">
         <input
           name="title"
@@ -51,8 +53,8 @@ export default function UrlForm() {
         {/*  */}
 
         <br />
-        <input type="hidden" name="short_url" value={nanoid(8)} />
-        <input type="hidden" name="user" value={userId} />
+        <input type="hidden" name="shortUrl" value={nanoid(8)} />
+        <input type="hidden" name="userId" value={userId} />
         <button
           type="submit"
           className="text-sky-500 hover:text-sky-600 "

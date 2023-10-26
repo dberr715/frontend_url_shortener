@@ -20,7 +20,7 @@ export default function MainNav() {
     //   </NavLink>
     // );
 
-    <NavLink>
+    <div>
       <div className="max-w-2xl mx-auto">
         <nav className="border-gray-200 px-2 mb-10">
           <div className="container mx-auto flex flex-wrap items-center justify-between">
@@ -71,16 +71,16 @@ export default function MainNav() {
             >
               <ul className="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
                 <li>
-                  <a
+                  <div
                     href="#"
                     className="bg-blue-700 md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-blue-700 md:p-0 rounded"
                     aria-current="page"
                   >
                     {isAuth ? <Link to="/">Home</Link> : null}
-                  </a>
+                  </div>
                 </li>
                 <li>
-                  <a
+                  <div
                     href="#"
                     className="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
                   >
@@ -89,14 +89,14 @@ export default function MainNav() {
                     ) : (
                       <Link to="/login">Login</Link>
                     )}
-                  </a>
+                  </div>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
       </div>
-    </NavLink>
+    </div>
   );
   <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>;
 }

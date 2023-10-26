@@ -12,12 +12,13 @@ import HomeText from "./components/HomeText";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />, 
-    errorElement: <ErrorPage />, 
+    element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
-        index: true, 
-        element: <HomeText />, 
+        // index: true,
+        path: "home/",
+        element: <Home />,
         loader: homeLoader,
       },
       {

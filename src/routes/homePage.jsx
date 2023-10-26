@@ -2,14 +2,15 @@ import { useState } from "react";
 import LoginForm from "../components/LoginForm";
 import "../index.css";
 import { redirect, useLoaderData } from "react-router-dom";
-import  MainNav  from "../components/Navigations";
+import MainNav from "../components/Navigations";
 import LinkList from "../components/LinkList";
 import UrlForm from "../components/UrlForm";
-
+import HomeText from "../components/HomeText";
 
 export async function loader() {
   try {
-    const url = "http://localhost:8000/urldata/";
+    const url = `http://localhost:8000/urldata/?user=${localStorage.getItem("user_id")}`;
+    // const url = `${import.meta.env.VITE_API_URL}/urldata/`;
     const linkList = await fetch(url, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -18,6 +19,7 @@ export async function loader() {
     if (!Array.isArray(linkList)) {
       throw Error("Not an array of links");
     }
+    console.log(linkList.title);
     return { linkList };
   } catch (error) {
     return redirect("/login");
@@ -29,36 +31,9 @@ export default function Home() {
 
   return (
     <>
-      <UrlForm />
+      <HomeText />
 
       <LinkList linkList={linkList} />
     </>
   );
 }
-// export async function loader() {
-//   const url = "http://127.0.0.1:8000/urldata/";
-//   const linkList = await fetch(url, {
-//     headers: {
-//       Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-//       Accept: "application/json",
-//       "Content-Type": "application/json",
-//     },
-//   }).then((response) => response.json());
-//   return linkList;
-// }
-
-// function App() {
-//     const {List}= useLoaderData()
-//     console.log(List)
-
-//   return (
-//     <>
-//       {/* <LoginForm />
-//       <UrlForm /> */}
-//       {/* <LinkList /> */}
-//       <LinkList List={List} />
-//     </>
-//   );
-// }
-
-// export default App;
